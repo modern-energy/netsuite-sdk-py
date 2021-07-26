@@ -51,7 +51,9 @@ class JournalEntries(ApiBase):
             line_list.append(jee)
 
         je['lineList'] = self.ns_client.JournalEntryLineList(line=line_list)
-        je['currency'] = self.ns_client.RecordRef(**(data['currency']))
+        
+        if 'currency' in data:
+            je['currency'] = self.ns_client.RecordRef(**(data['currency']))
 
         if 'memo' in data:
             je['memo'] = data['memo']
